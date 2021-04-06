@@ -9,7 +9,7 @@ function Visitors() {
 		search: '',
 	});
 
-	const [filter, setFilter] = useState([]);
+	// const [filter, setFilter] = useState([]);
 
 	// const [singleVisitor, setSingleVisitor] = useState();
 
@@ -27,15 +27,15 @@ function Visitors() {
 		});
 	};
 
-	const filterVisitors = () => {
-		setFilter(
-			allVisitors.filter((visitor) => {
-				return (
-					visitor.fname.toLowerCase().indexOf(value.search.toLowerCase()) !== -1
-				);
-			})
-		);
-	};
+	// const filterVisitors = () => {
+	// 	setFilter(
+	// 		allVisitors.filter((visitor) => {
+	// 			return (
+	// 				visitor.fname.toLowerCase().indexOf(value.search.toLowerCase()) !== -1
+	// 			);
+	// 		})
+	// 	);
+	// };
 
 	const removeVisitor = (visitor) => {
 		const option = window.confirm('are you sure want to delete?');
