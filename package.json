@@ -12,6 +12,8 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
+    "cleave": "^1.0.2",
+    "cleave.js": "^1.6.0",
     "cra-template": "1.1.2",
     "dayjs": "^1.10.4",
     "jwt-decode": "^3.1.2",

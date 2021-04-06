@@ -9,6 +9,7 @@ function NewVisit() {
 		organization: '',
 		relationship: '',
 		reason: '',
+		a_time: '',
 		d_time: '',
 		duration: '',
 	});
@@ -17,17 +18,36 @@ function NewVisit() {
 
 	const handleValue = (e) => {
 		e.preventDefault();
-		const { visitor, visited, email, phone, address, reason } = value;
+		const {
+			visitor,
+			visited,
+			organization,
+			relationship,
+			reason,
+			a_time,
+			d_time,
+			duration,
+		} = value;
 		const newVisit = {
 			visitor,
 			visited,
-			email,
-			phone,
-			address,
+			organization,
+			relationship,
 			reason,
+			a_time,
+			d_time,
+			duration,
 		};
 		createVisit(newVisit);
-		setValue({ visitor: '', visited: '', email: '', phone: '', address: '' });
+		setValue({
+			visitor: '',
+			visited: '',
+			organization: '',
+			relationship: '',
+			reason: '',
+			d_time,
+			duration,
+		});
 	};
 
 	const closeModal = () => {

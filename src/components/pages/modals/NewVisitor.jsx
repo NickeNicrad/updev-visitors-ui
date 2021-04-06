@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import 'cleave.js/dist/addons/cleave-phone.rw';
+import CleavePhone from 'cleave.js/react';
 import * as api from '../../../api/index';
 import avatar from '../../../images/avatar/profile_avatar.png';
 import visitor from '../../../images/avatar/visitor-reception.png';
@@ -143,11 +145,23 @@ function NewVisitor() {
 								/>
 							</div>
 							<div>
-								<input
+								{/* <input
 									type='phone'
 									placeholder='Phone'
 									className='w-72 m-1 px-2 py-3 rounded text-xs outline-none text-gray-400'
 									value={value.phone}
+									onChange={(e) =>
+										setValue({ ...value, phone: e.target.value })
+									}
+								/> */}
+								<CleavePhone
+									placeholder='Phone'
+									value={value.phone}
+									className='w-72 m-1 px-2 py-3 rounded text-xs outline-none text-gray-400'
+									options={{
+										phone: true,
+										phoneRegionCode: 'RW',
+									}}
 									onChange={(e) =>
 										setValue({ ...value, phone: e.target.value })
 									}
