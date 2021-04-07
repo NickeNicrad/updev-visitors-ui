@@ -56,7 +56,7 @@ function Visitors() {
 				<div className='w-full h-24 flex justify-center items-center bg-gray-50'>
 					<div className='relative'>
 						<input
-							className='px-10 py-3 w-96 outline-none text-sm shadow rounded bg-gray-100 text-gray-400'
+							className='px-10 py-3 w-96 outline-none text-sm shadow rounded bg-gray-50 text-gray-400'
 							placeholder='search'
 							type='text'
 							value={value.search}
@@ -79,7 +79,7 @@ function Visitors() {
 					</div>
 				</div>
 				<div className='w-full h-14 flex items-center justify-between text-gray-700'>
-					<h1>All Visitors</h1>
+					<h1 className='font-semibold text-normal'>All Visitors</h1>
 					<div>
 						<button
 							onClick={openVisitorModal}
@@ -109,7 +109,7 @@ function Visitors() {
 									<svg
 										xmlns='http://www.w3.org/2000/svg'
 										viewBox='0 0 20 20'
-										className='h-5 w-5 cursor-pointer text-gray-400 fill-current font-thin mx-auto'
+										className='h-5 w-5 cursor-pointer text-gray-700 fill-current font-thin mx-auto my-4'
 										stroke='currentColor'
 										strokeWidth='0'
 										fill='none'>

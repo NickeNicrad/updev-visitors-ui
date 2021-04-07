@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { updateVisit, getAllVisits } from '../../api/index';
-import profile1 from '../../images/profiles/profile2.jpg';
+import profile1 from '../../images/avatar/profile_avatar.png';
 
 function Visits() {
 	const [value, setValue] = useState({ search: '' });
@@ -10,7 +10,6 @@ function Visits() {
 
 	// all time concerned states
 	const [startTime, setStartTime] = useState('00');
-	const [stopTime, setStopTime] = useState('00');
 	const [hours, setHours] = useState('00');
 	const [minutes, setMinutes] = useState('00');
 	const [seconds, setSeconds] = useState('00');
@@ -21,34 +20,40 @@ function Visits() {
 
 	let interval = useRef();
 
-	const startTimer = () => {
-		const counter = Date.now();
-		interval = setInterval(() => {
-			const now = Date.now();
-			const distance = (counter - now) * -1;
+	const startTimer = (visit) => {
+		if (visit._id) {
+			const counter = Date.now();
+			interval = setInterval(() => {
+				const now = Date.now();
+				const distance = (counter - now) * -1;
 
-			if (interval < 0) {
-				clearInterval(interval.current);
-			} else {
-				setHours(
-					Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-				);
-				setMinutes(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
-				setSeconds(Math.floor((distance % (1000 * 60)) / 1000));
-			}
-		}, 1000);
-		setStartTime(Date.now());
+				if (interval < 0) {
+					clearInterval(interval.current);
+				} else {
+					setHours(
+						Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+					);
+					setMinutes(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+					setSeconds(Math.floor((distance % (1000 * 60)) / 1000));
+				}
+			}, 1000);
+			setStartTime(Date.now());
+		}
 	};
 
-	const stopTimer = () => {
-		setStopTime(Date.now());
+	const stopTimer = (visit) => {
 		window.clearInterval(interval.current);
-		const duration = {
-			hours,
-			minutes,
-			seconds,
+
+		const timeHolder = {
+			startTime,
+			stopTime: Date.now(),
+			duration: {
+				hours,
+				minutes,
+				seconds,
+			},
 		};
-		updateVisit(startTime, stopTime, duration);
+		updateVisit(visit._id, timeHolder);
 	};
 
 	const loadVisits = () => {
@@ -67,7 +72,7 @@ function Visits() {
 			<div className='w-full h-24 flex justify-center items-center bg-gray-50'>
 				<div className='relative'>
 					<input
-						className='px-10 py-3 w-96 outline-none text-sm rounded shadow bg-gray-100 text-gray-400'
+						className='px-10 py-3 w-96 outline-none text-sm rounded shadow bg-gray-50 text-gray-400'
 						placeholder='search'
 						type='text'
 						value={value.search}
@@ -114,15 +119,13 @@ function Visits() {
 					<button className=' relative text-sm px-6 py-2 ml-2 bg-gray-100 rounded hover:bg-gray-300 focus:outline-none'>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
-							fill='none'
-							viewBox='0 0 24 24'
-							stroke='currentColor'
-							className='absolute top-2 left-1 w-5 h-5'>
+							viewBox='0 0 20 20'
+							fill='currentColor'
+							className='absolute top-2 left-1 w-5 h-5 text-gray-600'>
 							<path
-								strokeLinecap='round'
-								strokeLinejoin='round'
-								strokeWidth='2'
-								d='M12 6v6m0 0v6m0-6h6m-6 0H6'
+								fillRule='evenodd'
+								d='M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v2a2 2 0 002 2h6a2 2 0 002-2v-2h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z'
+								clipRule='evenodd'
 							/>
 						</svg>
 						<span>Print Report</span>
@@ -137,7 +140,7 @@ function Visits() {
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
 									viewBox='0 0 20 20'
-									className='h-5 w-5 cursor-pointer text-gray-400 fill-current font-thin mx-auto'
+									className='h-5 w-5 cursor-pointer text-gray-700 fill-current font-thin mx-auto my-4'
 									stroke='currentColor'
 									strokeWidth='0'
 									fill='none'>
@@ -182,11 +185,11 @@ function Visits() {
 										<td>{visit.company}</td>
 										<td className='space-y-0'>
 											<strong className='block capitalize font-semibold'>
-												{`${hours}:${minutes}:${seconds}`}
+												{`${visit.duration[0].hours}:${visit.duration[0].minutes}:${visit.duration[0].seconds}`}
 											</strong>
 											<span className='block text-xs'>{`${dayjs(
-												startTime
-											).format('HH:mm')}-${dayjs(stopTime).format(
+												visit.startTime
+											).format('HH:mm')}-${dayjs(visit.stopTime).format(
 												'HH:mm'
 											)}`}</span>
 										</td>
@@ -194,10 +197,10 @@ function Visits() {
 											<button className='rounded bg-transparent text-gray-700 mx-1 focus:outline-none'>
 												<svg
 													xmlns='http://www.w3.org/2000/svg'
-													class='h-5 w-5'
+													className='h-5 w-5'
 													viewBox='0 0 20 20'
 													fill='currentColor'
-													onClick={startTimer}>
+													onClick={startTimer.bind(this, visit)}>
 													<path
 														fillRule='evenodd'
 														d='M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z'
@@ -205,15 +208,13 @@ function Visits() {
 													/>
 												</svg>
 											</button>
-											<button
-												onClick={stopTimer}
-												className='rounded bg-transparent text-gray-700 mx-1 focus:outline-none'>
+											<button className='rounded bg-transparent text-gray-700 mx-1 focus:outline-none'>
 												<svg
 													xmlns='http://www.w3.org/2000/svg'
-													class='h-5 w-5'
+													className='h-5 w-5'
 													viewBox='0 0 20 20'
 													fill='currentColor'
-													onClick={stopTimer}>
+													onClick={stopTimer.bind(this, visit)}>
 													<path
 														fillRule='evenodd'
 														d='M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z'

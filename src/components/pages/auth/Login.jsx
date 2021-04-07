@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as api from '../../../api/index';
 
 function Login() {
@@ -27,21 +27,21 @@ function Login() {
 	};
 
 	useEffect(() => {
-		if (user) {
-			return <Redirect to='/' />;
+		if (user[0]) {
+			window.location = '/';
 		}
 	});
 
 	return (
 		<div className='w-full h-full flex flex-row justify-center'>
-			<div className='w-96 h-96 bg-gray-300 flex flex-col justify-center items-center absolute top-1/4 rounded-lg box-border'>
+			<div className='w-96 h-96 bg-gray-100 flex flex-col justify-center items-center absolute top-1/4 rounded-lg box-border'>
 				<div className='my-10 font-semibold text-3xl text-gray-700'>
-					<h1>Login</h1>
+					<h1 className='text-gray-500'>Login</h1>
 				</div>
 				<form className='' onSubmit={handlSubmit}>
 					<div>
 						<input
-							className='w-80 border-transparent px-2 py-4 text-xs rounded outline-none text-gray-500 my-2'
+							className='w-80 border-transparent px-2 py-4 text-xs rounded outline-none text-gray-500 my-2 shadow-xs'
 							type='email'
 							placeholder='E-Mail'
 							value={value.email}
@@ -50,7 +50,7 @@ function Login() {
 					</div>
 					<div>
 						<input
-							className='w-80 border-transparent px-2 py-4 text-xs rounded outline-none text-gray-500 my-2'
+							className='w-80 border-transparent px-2 py-4 text-xs rounded outline-none text-gray-500 my-2 shadow-xs'
 							type='password'
 							placeholder='Password'
 							value={value.password}
@@ -59,8 +59,9 @@ function Login() {
 					</div>
 					<div>
 						<button
-							className='w-80 border-none px-2 py-4 text-xs rounded outline-none text-gray-400 bg-gray-700 my-2'
-							type='submit'>
+							className='w-80 border-none px-2 py-4 text-xs rounded outline-none text-gray-400 bg-gray-700 my-2 shadow-sm focus:outline-none'
+							type='submit'
+							disabled={value.email === '' || value.password === ''}>
 							Login
 						</button>
 					</div>

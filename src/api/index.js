@@ -54,7 +54,7 @@ export const deleteVisitor = (id) => API.delete(`/visitors/${id}`);
 export const createVisit = (newVisit) => API.post(`/visits`, newVisit);
 
 // set visit end time
-export const updateVisit = (id, a_time, d_time, duration) => API.patch(`/visits/${id}`, a_time, d_time, duration);
+export const updateVisit = (id, timeHolder) => API.patch(`/visits/${id}`, timeHolder);
 
 // get all visits from the server
 export const getAllVisits = () => API.get('/visits');

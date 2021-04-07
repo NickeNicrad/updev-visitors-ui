@@ -36,6 +36,7 @@ function NewVisitor() {
 			address,
 		};
 		api.createVisitor(newVisitor);
+
 		setValue({ fname: '', lname: '', email: '', phone: '', address: '' });
 		document.querySelector('.visitor-modal-container').style.display = 'none';
 	};
@@ -145,15 +146,6 @@ function NewVisitor() {
 								/>
 							</div>
 							<div>
-								{/* <input
-									type='phone'
-									placeholder='Phone'
-									className='w-72 m-1 px-2 py-3 rounded text-xs outline-none text-gray-400'
-									value={value.phone}
-									onChange={(e) =>
-										setValue({ ...value, phone: e.target.value })
-									}
-								/> */}
 								<CleavePhone
 									placeholder='Phone'
 									value={value.phone}

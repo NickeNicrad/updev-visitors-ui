@@ -9,8 +9,8 @@ function NewVisit() {
 		organization: '',
 		relationship: '',
 		reason: '',
-		a_time: '',
-		d_time: '',
+		startTime: '',
+		stopTime: '',
 		duration: '',
 	});
 
@@ -24,8 +24,8 @@ function NewVisit() {
 			organization,
 			relationship,
 			reason,
-			a_time,
-			d_time,
+			startTime,
+			stopTime,
 			duration,
 		} = value;
 		const newVisit = {
@@ -34,8 +34,8 @@ function NewVisit() {
 			organization,
 			relationship,
 			reason,
-			a_time,
-			d_time,
+			startTime,
+			stopTime,
 			duration,
 		};
 		createVisit(newVisit);
@@ -45,7 +45,7 @@ function NewVisit() {
 			organization: '',
 			relationship: '',
 			reason: '',
-			d_time,
+			stopTime,
 			duration,
 		});
 	};
@@ -55,9 +55,13 @@ function NewVisit() {
 	};
 
 	const loadAllVisitors = () => {
-		getAllVisitors().then((res) => {
-			setAllVisitors(res.data);
-		});
+		getAllVisitors()
+			.then((res) => {
+				setAllVisitors(res.data);
+			})
+			.catch((err) => {
+				alert(err.message);
+			});
 	};
 
 	useEffect(() => {

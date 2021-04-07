@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
 import profile1 from '../images/profiles/profile3.jpg';
 
 function NavBar() {
@@ -16,12 +15,6 @@ function NavBar() {
 		localStorage.clear();
 	};
 
-	useEffect(() => {
-		if (user) {
-			return <Redirect to='/' />;
-		}
-	});
-
 	return (
 		<>
 			{user ? (
@@ -34,9 +27,9 @@ function NavBar() {
 
 						<ul className='flex gap-2 text-gray-400 cursor-pointer'>
 							<li
-								className='relative flex hover:text-gray-600'
+								className='relative flex hover:text-gray-500'
 								onClick={openDropdown}>
-								<span className='hover:text-gray-500 mr-1 capitalize'>
+								<span className='mr-1 capitalize'>
 									{`${user.result.fname} ${user.result.lname}`}
 								</span>
 								<img
@@ -89,13 +82,12 @@ function NavBar() {
 								<span className='text-sm'>nickenirad@gmail.com</span>
 							</div>
 							<div>
-								<button className='w-full px-4 py-1 rounded hover:bg-gray-600 outline-none'>
+								<button className='w-full px-4 py-1 rounded hover:bg-gray-600 focus:outline-none'>
 									Manage Account
 								</button>
 							</div>
 							<div>
-								<Link
-									to='/login'
+								<button
 									onClick={signOut}
 									className='w-full px-4 py-1 rounded hover:bg-gray-600 outline-none flex justify-center'>
 									<span>SignOut</span>
@@ -104,7 +96,7 @@ function NavBar() {
 										fill='none'
 										viewBox='0 0 24 24'
 										stroke='currentColor'
-										className='w-4 ml-2'>
+										className='w-4 ml-2 my-auto'>
 										<path
 											strokeLinecap='round'
 											strokeLinejoin='round'
@@ -112,7 +104,7 @@ function NavBar() {
 											d='M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1'
 										/>
 									</svg>
-								</Link>
+								</button>
 							</div>
 						</center>
 					</div>

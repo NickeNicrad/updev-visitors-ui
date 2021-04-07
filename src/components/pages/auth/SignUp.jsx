@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as api from '../../../api/index';
 
 function SignUp() {
@@ -9,6 +9,8 @@ function SignUp() {
 		password: '',
 		confirmPass: '',
 	});
+
+	const user = useState(JSON.parse(localStorage.getItem('profile')));
 
 	const handlSubmit = (e) => {
 		e.preventDefault();
@@ -36,9 +38,15 @@ function SignUp() {
 		}
 	};
 
+	useEffect(() => {
+		if (user[0]) {
+			window.location = '/';
+		}
+	});
+
 	return (
 		<div className='w-full h-full flex flex-row justify-center'>
-			<div className='w-96 bg-gray-300 flex flex-col justify-center items-center absolute top-28 rounded-lg box-border p-6'>
+			<div className='w-96 bg-gray-100 flex flex-col justify-center items-center absolute top-28 rounded-lg box-border p-6'>
 				<div className='my-4 font-semibold text-3xl text-gray-700'>
 					<h1>Sign Up</h1>
 				</div>
