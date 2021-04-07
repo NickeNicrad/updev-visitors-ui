@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import profile1 from '../images/profiles/profile3.jpg';
+import profile1 from '../images/avatar/profile_avatar.png';
 import logo from '../images/logo/IMG_20210131_202241_276.jpg';
 
 function NavBar() {
