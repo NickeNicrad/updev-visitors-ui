@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import profile1 from '../images/profiles/profile3.jpg';
+import logo from '../images/logo/IMG_20210131_202241_276.jpg';
 
 function NavBar() {
 	const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -21,7 +22,9 @@ function NavBar() {
 				<div className='h-12 bg-gray-700 font-thin'>
 					<div className='mx-auto flex justify-between items-center h-12 w-4/5'>
 						<ul className='flex gap-2'>
-							<li>logo</li>
+							<li>
+								<img className='w-6 h-6 rounded-full' src={logo} alt='' />
+							</li>
 							<li></li>
 						</ul>
 
@@ -112,7 +115,7 @@ function NavBar() {
 			) : (
 				<div className='h-12 bg-gray-700 font-thin'>
 					<div className='mx-auto flex justify-center items-center h-12 w-4/5'>
-						cdscds
+						<img className='w-10 rounded-full' src={logo} alt='' />
 					</div>
 				</div>
 			)}

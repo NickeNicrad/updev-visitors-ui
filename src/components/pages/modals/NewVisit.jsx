@@ -55,13 +55,9 @@ function NewVisit() {
 	};
 
 	const loadAllVisitors = () => {
-		getAllVisitors()
-			.then((res) => {
-				setAllVisitors(res.data);
-			})
-			.catch((err) => {
-				alert(err.message);
-			});
+		getAllVisitors().then((res) => {
+			setAllVisitors(res.data);
+		});
 	};
 
 	useEffect(() => {

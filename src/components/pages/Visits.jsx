@@ -18,6 +18,12 @@ function Visits() {
 		document.querySelector('.visit-modal-container').style.display = 'flex';
 	};
 
+	const printTable = () => {
+		const table = document.querySelector('#print-tab').outerHTML;
+		document.body.innerHTML = table;
+		window.print();
+	};
+
 	let interval = useRef();
 
 	const startTimer = (visit) => {
@@ -116,7 +122,9 @@ function Visits() {
 						<span>add new visit</span>
 					</button>
 
-					<button className=' relative text-sm px-6 py-2 ml-2 bg-gray-100 rounded hover:bg-gray-300 focus:outline-none'>
+					<button
+						onClick={printTable}
+						className=' relative text-sm px-6 py-2 ml-2 bg-gray-100 rounded hover:bg-gray-300 focus:outline-none'>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
 							viewBox='0 0 20 20'
@@ -133,7 +141,7 @@ function Visits() {
 				</div>
 			</div>
 			<div className='shadow-normal overflow-hidden overflow-y-scroll text-gray-700 g-tab'>
-				<table className='w-full text-center text-sm'>
+				<table className='w-full text-center text-sm' id='print-tab'>
 					<thead>
 						<tr className='py-2'>
 							<th>
