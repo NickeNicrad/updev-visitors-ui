@@ -11,24 +11,9 @@ API.interceptors.request.use((req) =>
 })
 
 // creating a new system user
-export const signup = (newUser) => API.post('/auth/signup', newUser)
-    .then((res) =>
-    {
-        localStorage.setItem('profile', JSON.stringify({...res.data}));
-    })
-    .catch((err) =>
-    {
-        console.log(err.message)
-    });
+export const signup = (newUser) => API.post('/auth/signup', newUser);
 
-export const login = (existUser) => API.post('/auth/login', existUser).then((res) =>
-    {
-        localStorage.setItem('profile', JSON.stringify({...res.data}));
-    })
-    .catch((err) =>
-    {
-        console.log(err.message)
-    });
+export const login = (existUser) => API.post('/auth/login', existUser);
 
 // getMyProfile
 export const getMyProfile = (id) => API.get(`/${id}`);

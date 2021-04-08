@@ -26,15 +26,15 @@ function SignUp() {
 				password,
 			};
 
-			api.signup(reg_user);
-
-			setValue({
-				fname: '',
-				lname: '',
-				email: '',
-				password: '',
-				confirmPass: '',
-			});
+			api
+				.signup(reg_user)
+				.then((res) => {
+					localStorage.setItem('profile', JSON.stringify({ ...res.data }));
+					window.location = '/';
+				})
+				.catch((err) => {
+					alert(err.message);
+				});
 		}
 	};
 

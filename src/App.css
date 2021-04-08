@@ -8,6 +8,10 @@
 	box-sizing: border-box;
 }
 
+.dash-container {
+	height: 79.4vh;
+}
+
 .page-container {
 	height: 92.8vh;
 	display: grid;
@@ -66,4 +70,8 @@
 
 .visit-modal-content {
 	width: fit-content;
+}
+
+.test {
+	border: 1px solid red;
 }

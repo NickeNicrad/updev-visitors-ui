@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import profile1 from '../images/avatar/profile_avatar.png';
 import logo from '../images/logo/IMG_20210131_202241_276.jpg';
 
@@ -14,6 +15,7 @@ function NavBar() {
 		document.querySelector('#acc-dropdown').classList.add('hidden');
 		setUser(null);
 		localStorage.clear();
+		window.location = '/login';
 	};
 
 	return (
@@ -85,9 +87,11 @@ function NavBar() {
 								<span className='text-sm'>nickenirad@gmail.com</span>
 							</div>
 							<div>
-								<button className='w-full px-4 py-1 rounded hover:bg-gray-600 focus:outline-none'>
+								<Link
+									to='/'
+									className='w-full px-4 py-1 rounded hover:bg-gray-600 focus:outline-none'>
 									Manage Account
-								</button>
+								</Link>
 							</div>
 							<div>
 								<button

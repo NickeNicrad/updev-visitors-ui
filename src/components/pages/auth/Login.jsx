@@ -18,12 +18,15 @@ function Login() {
 			email: email.toLowerCase(),
 			password,
 		};
-
-		api.login(log_user);
-		setValue({
-			email: '',
-			password: '',
-		});
+		api
+			.login(log_user)
+			.then((res) => {
+				localStorage.setItem('profile', JSON.stringify({ ...res.data }));
+				window.location = '/';
+			})
+			.catch((err) => {
+				alert(err.message);
+			});
 	};
 
 	useEffect(() => {
