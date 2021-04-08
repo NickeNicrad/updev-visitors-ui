@@ -79,17 +79,22 @@ function NavBar() {
 								</svg>
 							</div>
 							<div>
-								<span className='text-normal font-semibold text-gray-300'>
-									Nicke Nicrad
+								<span className='text-normal font-semibold text-gray-300 capitalize'>
+									{`${user.result.fname} ${user.result.lname}`}
 								</span>
 							</div>
 							<div>
-								<span className='text-sm'>nickenirad@gmail.com</span>
+								<span className='text-sm'>{user.result.email}</span>
 							</div>
 							<div>
 								<Link
 									to='/'
-									className='w-full px-4 py-1 rounded hover:bg-gray-600 focus:outline-none'>
+									className='w-full px-4 py-1 rounded hover:bg-gray-600 focus:outline-none'
+									onClick={() =>
+										document
+											.querySelector('#acc-dropdown')
+											.classList.add('hidden')
+									}>
 									Manage Account
 								</Link>
 							</div>

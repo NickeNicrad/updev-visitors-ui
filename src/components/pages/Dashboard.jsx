@@ -17,6 +17,8 @@ function Dashboard() {
 	const [allVisitors, setAllVisitors] = useState([]);
 	const [allVisits, setAllVisits] = useState([]);
 
+	const [user] = useState(JSON.parse(localStorage.getItem('profile')));
+
 	const handleValue = (e) => {
 		e.preventDefault();
 	};
@@ -55,11 +57,11 @@ function Dashboard() {
 							className='w-full h-full object-cover rounded-t-md'
 						/>
 						<div className='absolute bottom-2 left-2'>
-							<h1 className='text-gray-200 font-semibold shadow-inner'>
-								Nicke Nicrad
+							<h1 className='text-gray-200 font-semibold shadow-inner capitalize'>
+								{`${user.result.fname} ${user.result.lname}`}
 							</h1>
 							<p className='text-gray-50 text-xs shadow-inner'>
-								nickenicrad@gmail.com
+								{user.result.email}
 							</p>
 						</div>
 					</div>
@@ -74,7 +76,9 @@ function Dashboard() {
 								value={value.about}
 								onChange={(e) => setValue({ ...value, about: e.target.value })}
 							/>
-							<button className='flex bg-gray-50 h-7 rounded p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-500 shadow'>
+							<button
+								className='flex bg-gray-50 h-7 rounded p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-500 shadow focus:outline-none'
+								onClick={editProfile}>
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
 									class='h-5 w-5'
@@ -161,7 +165,7 @@ function Dashboard() {
 								allVisitors.map((visitor) => {
 									return (
 										<div className='flex w-full h-28 p-2' key={visitor.id}>
-											<div className='flex-none w-24 h-24 relative'>
+											<div className='flex-none w-20 h-20 relative'>
 												<img
 													src={avatar}
 													alt=''
@@ -169,16 +173,16 @@ function Dashboard() {
 												/>
 											</div>
 											<div className='ml-2 mt-2'>
-												<h1 className='flex-auto text-normal capitalize font-bold text-gray-700'>
+												<h1 className='flex-auto text-xs capitalize font-semibold text-gray-700'>
 													{`${visitor.fname} ${visitor.lname}`}
 												</h1>
-												<div className='w-full flex-none text-xs font-medium text-gray-500'>
+												<div className='w-full flex-none text-xs font-thin text-gray-500'>
 													{visitor.email}
 												</div>
-												<div className='w-full flex-none text-xs font-medium capitalize text-gray-500'>
+												<div className='w-full flex-none text-xs font-thin capitalize text-gray-500'>
 													{visitor.address}
 												</div>
-												<div className='w-full flex-none text-xs font-medium capitalize text-gray-500'>
+												<div className='w-full flex-none text-xs font-thin capitalize text-gray-500'>
 													{visitor.phone}
 												</div>
 											</div>
@@ -187,11 +191,11 @@ function Dashboard() {
 								})}
 						</div>
 						<div className='w-96'>
-							<div className='w-full p-4 h-24 mb-4 text-gray-400 bg-gray-800 rounded-md shadow'>
+							<div className='w-full p-4 h-20 mb-4 text-gray-400 rounded-md shadow'>
 								<h1 className='font-bold text-lg'>{allVisitors.length}</h1>
 								<p className='text-base'>All Visitors</p>
 							</div>
-							<div className='w-full p-4 h-24 mb-4 text-gray-200 bg-red-600 rounded-md shadow'>
+							<div className='w-full p-4 h-20 mb-4 text-gray-200 rounded-md shadow'>
 								<h1 className='font-bold text-lg'>{allVisits.length}</h1>
 								<p className='text-base'>All Visits</p>
 							</div>
