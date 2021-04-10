@@ -1,31 +1,23 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Dashboard from './pages/Dashboard';
-import Footer from './pages/Footer';
-import NewVisit from './pages/modals/NewVisit';
 import NewVisitor from './pages/modals/NewVisitor';
-import SideBar from './pages/SideBar';
+import NewVisit from './pages/modals/NewVisit';
 import Visitors from './pages/Visitors';
 import Visits from './pages/Visits';
+import UserInfos from './UserInfos';
 
 function Home() {
 	return (
 		<Router>
-			<div className='page-container'>
-				<div className='page-item bg-gray-600'>
-					<SideBar />
-					<NewVisitor />
-					<NewVisit />
-				</div>
-				<div className='page-item'>
-					<Switch>
-						<Route exact path='/' component={Dashboard} />
-						<Route path='/visitors' component={Visitors} />
-						<Route path='/visits' component={Visits} />
-					</Switch>
-					<Footer />
-				</div>
+			<div className='flex gap-4 w-11/12 mx-auto my-4'>
+				<UserInfos />
+				<Switch>
+					<Route path='/' exact component={Visitors} />
+					<Route path='/visits' component={Visits} />
+				</Switch>
 			</div>
+			<NewVisitor />
+			<NewVisit />
 		</Router>
 	);
 }

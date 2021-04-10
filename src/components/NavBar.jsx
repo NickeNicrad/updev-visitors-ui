@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import profile1 from '../images/avatar/profile_avatar.png';
 import logo from '../images/logo/IMG_20210131_202241_276.jpg';
+import ManageAccount from './pages/modals/ManageAccount';
 
 function NavBar() {
 	const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -9,6 +10,12 @@ function NavBar() {
 	const openDropdown = () => {
 		const dropdown = document.querySelector('#acc-dropdown');
 		dropdown.classList.toggle('hidden');
+	};
+
+	const openModal = () => {
+		document.querySelector('#acc-dropdown').classList.add('hidden');
+		document.querySelector('#account-modal').classList.remove('hidden');
+		document.querySelector('#account-modal').classList.add('flex');
 	};
 
 	const signOut = () => {
@@ -21,13 +28,15 @@ function NavBar() {
 	return (
 		<>
 			{user ? (
-				<div className='h-12 bg-gray-700 font-thin'>
+				<div className='h-12 bg-gray-900 font-thin'>
 					<div className='mx-auto flex justify-between items-center h-12 w-4/5'>
-						<ul className='flex gap-2'>
+						<ul className='flex gap-2 text-gray-400'>
 							<li>
 								<img className='w-6 h-6 rounded-full' src={logo} alt='' />
 							</li>
-							<li></li>
+							<li className='hover:text-gray-500'>
+								<Link to='/'>Home</Link>
+							</li>
 						</ul>
 
 						<ul className='flex gap-2 text-gray-400 cursor-pointer'>
@@ -53,30 +62,39 @@ function NavBar() {
 
 					{/* dropdown */}
 					<div
-						className='w-60 h-60 right-8 border-t-1 px-4 py-1 text-gray-400 rounded-b bg-gray-700 absolute z-50 hidden'
+						className='w-60 h-60 right-8 border-t-1 px-4 py-1 text-gray-400 rounded-b bg-gray-800 absolute z-50 hidden'
 						id='acc-dropdown'>
 						<center className='space-y-0'>
 							<div className='relative'>
 								<img className='w-24 rounded-full' src={profile1} alt='' />
-								<svg
-									xmlns='http://www.w3.org/2000/svg'
-									fill='none'
-									viewBox='0 0 24 24'
-									stroke='currentColor'
-									className='w-6 absolute right-14 bottom-0 p-1 bg-gray-700 rounded-full hover:bg-gray-600 cursor-pointer'>
-									<path
-										strokeLinecap='round'
-										strokeLinejoin='round'
-										strokeWidth='2'
-										d='M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z'
-									/>
-									<path
-										strokeLinecap='round'
-										strokeLinejoin='round'
-										strokeWidth='2'
-										d='M15 13a3 3 0 11-6 0 3 3 0 016 0z'
-									/>
-								</svg>
+								<input
+									className='hidden'
+									type='file'
+									accept='image/*'
+									id='edit-nav-img'
+								/>
+								<label htmlFor='edit-nav-img'>
+									<svg
+										onClick=''
+										xmlns='http://www.w3.org/2000/svg'
+										fill='none'
+										viewBox='0 0 24 24'
+										stroke='currentColor'
+										className='w-6 absolute right-14 bottom-0 p-1 bg-gray-700 rounded-full hover:bg-gray-600 cursor-pointer'>
+										<path
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											strokeWidth='2'
+											d='M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z'
+										/>
+										<path
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											strokeWidth='2'
+											d='M15 13a3 3 0 11-6 0 3 3 0 016 0z'
+										/>
+									</svg>
+								</label>
 							</div>
 							<div>
 								<span className='text-normal font-semibold text-gray-300 capitalize'>
@@ -87,16 +105,11 @@ function NavBar() {
 								<span className='text-sm'>{user.result.email}</span>
 							</div>
 							<div>
-								<Link
-									to='/'
+								<button
 									className='w-full px-4 py-1 rounded hover:bg-gray-600 focus:outline-none'
-									onClick={() =>
-										document
-											.querySelector('#acc-dropdown')
-											.classList.add('hidden')
-									}>
+									onClick={openModal}>
 									Manage Account
-								</Link>
+								</button>
 							</div>
 							<div>
 								<button
@@ -128,6 +141,7 @@ function NavBar() {
 					</div>
 				</div>
 			)}
+			<ManageAccount />
 		</>
 	);
 }

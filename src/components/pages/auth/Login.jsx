@@ -25,13 +25,13 @@ function Login() {
 				window.location = '/';
 			})
 			.catch((err) => {
-				alert(err.message);
+				alert(err.res.data.msg);
 			});
 	};
 
 	useEffect(() => {
 		if (user[0]) {
-			window.location = '/';
+			window.location.href = '/';
 		}
 	});
 

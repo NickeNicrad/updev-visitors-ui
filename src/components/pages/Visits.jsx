@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import dayjs from 'dayjs';
+import { Link } from 'react-router-dom';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { updateVisit, getAllVisits } from '../../api/index';
 import profile1 from '../../images/avatar/profile_avatar.png';
@@ -15,7 +16,8 @@ function Visits() {
 	const [seconds, setSeconds] = useState('00');
 
 	const openVisitModal = () => {
-		document.querySelector('.visit-modal-container').style.display = 'flex';
+		document.querySelector('#visit-modal').classList.remove('hidden');
+		document.querySelector('#visit-modal').classList.add('flex');
 	};
 
 	const printTable = () => {
@@ -74,8 +76,20 @@ function Visits() {
 	});
 
 	return (
-		<div className='w-full px-10'>
-			<div className='w-full h-24 flex justify-center items-center bg-gray-50'>
+		<div className='w-full'>
+			<div className='text-sm font-thin text-gray-500 gap-2 flex justify-start'>
+				<Link
+					className='bg-gray-50 rounded py-2 px-4 hover:bg-gray-100 focus:outline-none'
+					to='/'>
+					All Visitors
+				</Link>
+				<Link
+					className='bg-gray-50 rounded py-2 px-4 hover:bg-gray-100 focus:outline-none'
+					to='/visits'>
+					All Visits
+				</Link>
+			</div>
+			<div className='w-full h-16 flex justify-center items-center'>
 				<div className='relative'>
 					<input
 						className='px-10 py-3 w-96 outline-none text-sm rounded shadow bg-gray-50 text-gray-400'
@@ -105,7 +119,7 @@ function Visits() {
 				<div>
 					<button
 						onClick={openVisitModal}
-						className=' relative text-sm px-6 py-2 bg-gray-100 rounded hover:bg-gray-300 focus:outline-none'>
+						className=' relative text-sm px-6 py-2 bg-gray-50 rounded hover:bg-gray-100 focus:outline-none'>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
 							fill='none'
@@ -124,7 +138,7 @@ function Visits() {
 
 					<button
 						onClick={printTable}
-						className=' relative text-sm px-6 py-2 ml-2 bg-gray-100 rounded hover:bg-gray-300 focus:outline-none'>
+						className=' relative text-sm px-6 py-2 ml-2 bg-gray-50 rounded hover:bg-gray-100 focus:outline-none'>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
 							viewBox='0 0 20 20'
@@ -140,7 +154,7 @@ function Visits() {
 					</button>
 				</div>
 			</div>
-			<div className='shadow-normal overflow-hidden overflow-y-scroll text-gray-700 g-tab'>
+			<div className='g-tab shadow-normal overflow-hidden overflow-y-scroll text-gray-700'>
 				<table className='w-full text-center text-sm' id='print-tab'>
 					<thead>
 						<tr className='py-2'>
@@ -148,7 +162,7 @@ function Visits() {
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
 									viewBox='0 0 20 20'
-									className='h-5 w-5 cursor-pointer text-gray-700 fill-current font-thin mx-auto my-4'
+									className='h-4 w-5 cursor-pointer text-gray-700 fill-current font-thin mx-auto my-4'
 									stroke='currentColor'
 									strokeWidth='0'
 									fill='none'>

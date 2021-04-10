@@ -15,9 +15,13 @@ export const signup = (newUser) => API.post('/auth/signup', newUser);
 
 export const login = (existUser) => API.post('/auth/login', existUser);
 
-// getMyProfile
-export const getMyProfile = (id) => API.get(`/${id}`);
+// update user password
+export const updateUserPassword = (id, userPassword) => API.patch(`/user/${id}`, userPassword);
 
+// update user profile
+export const updateUser = (id, user) => API.patch(`/user/${id}`, user);
+
+// visitor API
 // get all visitors from the database
 export const getAllVisitors = () => API.get('/visitors');
 
@@ -34,7 +38,6 @@ export const updateVisitor = (id, upVisitor) => API.patch(`/visitors/${id}`, upV
 export const deleteVisitor = (id) => API.delete(`/visitors/${id}`);
 
 // visit API
-
 // create new visit
 export const createVisit = (newVisit) => API.post(`/visits`, newVisit);
 

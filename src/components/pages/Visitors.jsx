@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { Link } from 'react-router-dom';
 import { getAllVisitors, deleteVisitor, updateVisitor } from '../../api/index';
 import profile1 from '../../images/avatar/profile_avatar.png';
 
@@ -17,7 +18,8 @@ function Visitors() {
 	// const [error, setError] = useState([]);
 
 	const openVisitorModal = (visitor) => {
-		document.querySelector('.visitor-modal-container').style.display = 'flex';
+		document.querySelector('#visitor-modal').classList.remove('hidden');
+		document.querySelector('#visitor-modal').classList.add('flex');
 		updateVisitor(visitor._id);
 	};
 
@@ -52,8 +54,20 @@ function Visitors() {
 
 	return (
 		<>
-			<div className='w-full px-10 visitors-container'>
-				<div className='w-full h-24 flex justify-center items-center bg-gray-50'>
+			<div className='w-full'>
+				<div className='text-sm font-thin text-gray-500 gap-2 flex justify-start'>
+					<Link
+						className='bg-gray-50 rounded py-2 px-4 hover:bg-gray-100 focus:outline-none'
+						to='/'>
+						All Visitors
+					</Link>
+					<Link
+						className='bg-gray-50 rounded py-2 px-4 hover:bg-gray-100 focus:outline-none'
+						to='/visits'>
+						All Visits
+					</Link>
+				</div>
+				<div className='w-full h-16 flex justify-center items-center'>
 					<div className='relative'>
 						<input
 							className='px-10 py-3 w-96 outline-none text-sm shadow rounded bg-gray-50 text-gray-400'
@@ -83,7 +97,7 @@ function Visitors() {
 					<div>
 						<button
 							onClick={openVisitorModal}
-							className=' relative text-sm px-6 py-2 bg-gray-100 rounded hover:bg-gray-300 focus:outline-none'>
+							className=' relative text-sm px-6 py-2 bg-gray-50 rounded hover:bg-gray-100 focus:outline-none'>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
 								fill='none'
@@ -101,7 +115,7 @@ function Visitors() {
 						</button>
 					</div>
 				</div>
-				<div className='g-tab text-gray-700'>
+				<div className='g-tab shadow-normal overflow-hidden overflow-y-scroll text-gray-700'>
 					<table className='w-full text-center text-sm'>
 						<thead>
 							<tr>
@@ -109,7 +123,7 @@ function Visitors() {
 									<svg
 										xmlns='http://www.w3.org/2000/svg'
 										viewBox='0 0 20 20'
-										className='h-5 w-5 cursor-pointer text-gray-700 fill-current font-thin mx-auto my-4'
+										className='h-4 w-5 cursor-pointer text-gray-700 fill-current font-thin mx-auto my-4'
 										stroke='currentColor'
 										strokeWidth='0'
 										fill='none'>
@@ -150,13 +164,13 @@ function Visitors() {
 											<td>
 												<button
 													onClick={openVisitorModal.bind(this, visitor)}
-													className='px-4 py-2 rounded bg-gray-700 text-gray-400 focus:outline-none hover:bg-gray-600 hover:text-gray-300'>
+													className='px-4 py-2 rounded bg-gray-900 text-gray-400 focus:outline-none hover:bg-gray-800 hover:text-gray-300'>
 													edit
 												</button>
 											</td>
 											<td>
 												<button
-													className='px-4 py-2 rounded bg-red-700 text-white focus:outline-none hover:bg-red-500 hover:text-gray-600'
+													className='px-4 py-2 rounded bg-red-700 text-gray-50 focus:outline-none hover:bg-red-600 hover:text-gray-600'
 													onClick={removeVisitor.bind(this, visitor)}>
 													delete
 												</button>

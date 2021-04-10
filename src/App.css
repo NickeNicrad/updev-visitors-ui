@@ -8,8 +8,20 @@
 	box-sizing: border-box;
 }
 
+.edit-form {
+	width: 100%;
+	border-radius: 0.3rem;
+	margin: 0.2rem 0;
+	padding: 0.3rem;
+	outline: none;
+}
+
+.edit-form-active {
+	box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
 .dash-container {
-	height: 79.4vh;
+	height: 79.5vh;
 }
 
 .page-container {
@@ -23,8 +35,7 @@
 	border-top: 1px solid rgb(100, 100, 100);
 }
 .g-tab {
-	height: 60vh;
-	margin-bottom: 10px;
+	height: 57vh;
 	box-sizing: border-box;
 	border-radius: 0.5rem;
 	box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
@@ -35,40 +46,21 @@
 }
 .g-tab-body {
 	border-radius: 0.5rem;
-	padding: 1rem 0;
 	height: 100%;
 }
 
-/* visitor modal */
-.visitor-modal-container {
+/* all modals */
+.modal-container {
 	width: 100%;
 	height: 100vh;
 	justify-content: center;
 	align-items: center;
-	background-color: rgba(0, 0, 0, 0.75);
+	background-color: rgba(0, 0, 0, 0.5);
 	position: fixed;
 	top: 0;
 	z-index: 999;
-	display: none;
 }
-.visitor-modal-content {
-	width: fit-content;
-}
-
-/* visit modal */
-.visit-modal-container {
-	width: 100%;
-	height: 100vh;
-	justify-content: center;
-	align-items: center;
-	background-color: rgba(0, 0, 0, 0.75);
-	position: fixed;
-	top: 0;
-	z-index: 999;
-	display: none;
-}
-
-.visit-modal-content {
+.modal-content {
 	width: fit-content;
 }
 

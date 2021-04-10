@@ -38,19 +38,19 @@ function NewVisitor() {
 		api.createVisitor(newVisitor);
 
 		setValue({ fname: '', lname: '', email: '', phone: '', address: '' });
-		document.querySelector('.visitor-modal-container').style.display = 'none';
+		document.querySelector('#visitor-modal').classList.add('hidden');
 	};
 
 	const closeModal = () => {
-		document.querySelector('.visitor-modal-container').style.display = 'none';
+		document.querySelector('#visitor-modal').classList.add('hidden');
 	};
 
 	return (
-		<div className='visitor-modal-container'>
-			<div className='visitor-modal-content rounded bg-gray-700 flex justify-center'>
+		<div className='modal-container hidden' id='visitor-modal'>
+			<div className='modal-content rounded bg-gray-900 flex justify-center'>
 				<div className='flex gap-1'>
 					<div className='w-full h-full'>
-						<img className='w-full h-full rounded' src={visitor} alt='' />
+						<img className='w-full h-full rounded-l' src={visitor} alt='' />
 					</div>
 					<div>
 						<div className='h-8 mb-1 flex justify-between'>
@@ -62,7 +62,7 @@ function NewVisitor() {
 									fill='none'
 									viewBox='0 0 24 24'
 									stroke='currentColor'
-									className='h-full w-full text-gray-600 bg-gray-700 hover:bg-gray-600 hover:text-gray-700 rounded'
+									className='h-full w-full text-gray-700 bg-gray-800 hover:bg-gray-700 hover:text-gray-800 rounded'
 									onClick={closeModal}>
 									<path
 										strokeLinecap='round'
@@ -173,7 +173,7 @@ function NewVisitor() {
 							<div>
 								<button
 									type='submit'
-									className='w-72 m-1 px-2 py-3 rounded text-xs outline-none bg-gray-600 text-gray-400 hover:bg-gray-500 hover:text-gray-600 focus:outline-none'
+									className='w-72 m-1 px-2 py-3 rounded text-xs outline-none bg-gray-800 text-gray-500 hover:bg-gray-700 hover:text-gray-800 focus:outline-none'
 									onClick={handleValue}
 									disabled={
 										value.fname === '' ||
