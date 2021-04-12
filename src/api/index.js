@@ -15,6 +15,9 @@ export const signup = (newUser) => API.post('/auth/signup', newUser);
 
 export const login = (existUser) => API.post('/auth/login', existUser);
 
+// get current user's credentials
+export const getMyProfile = (id) => API.get(`/user/${id}`);
+
 // update user password
 export const updateUserPassword = (id, userPassword) => API.patch(`/user/${id}`, userPassword);
 

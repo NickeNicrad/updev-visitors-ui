@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import 'cleave.js/dist/addons/cleave-phone.rw';
 import CleavePhone from 'cleave.js/react';
 import { updateUser, updateUserPassword } from '../../../api/index';
 import avatar from '../../../images/avatar/profile_avatar.png';
 function ManageAccount() {
 	const [user] = useState(JSON.parse(localStorage.getItem('profile')));
-	const { pr_image, fname, lname, email, phone, address } = user.result;
+	const { fname, lname, email, phone, address } = user;
+
 	const [value, setValue] = useState({
-		pr_image,
 		fname,
 		lname,
 		email,
@@ -40,16 +40,22 @@ function ManageAccount() {
 
 	const handleValue = (e) => {
 		e.preventDefault();
-		const { pr_image, fname, lname, email, phone, address } = value;
+		const { fname, lname, email, phone, address } = value;
 		const userUpdated = {
-			pr_image,
 			fname,
 			lname,
 			email,
 			phone,
 			address,
 		};
-		updateUser(user.result._id, userUpdated);
+		updateUser('606c5841f81e8d17e83fbb19', userUpdated)
+			.then((res) => {
+				setSuccess('successfully updated!');
+				localStorage.setItem('profile', JSON.stringify({ ...res.data }));
+			})
+			.catch((err) => {
+				setError({ passError: err.response.data.msg });
+			});
 	};
 
 	const handelPasswordValue = (e) => {
@@ -58,9 +64,10 @@ function ManageAccount() {
 		const userPassword = { password, newPass };
 		if (newPass !== confirmPass)
 			return setError({ passError: 'new password not same' });
-		updateUserPassword(user.result._id, userPassword)
+		updateUserPassword('606c5841f81e8d17e83fbb19', userPassword)
 			.then((res) => {
-				setSuccess(res.data);
+				setSuccess('successfully updated!');
+				localStorage.setItem('profile', JSON.stringify({ ...res.data }));
 			})
 			.catch((err) => {
 				setError({ passError: err.response.data.msg });
@@ -76,8 +83,6 @@ function ManageAccount() {
 			setValue({ pr_image });
 		}
 	};
-
-	useEffect(() => {});
 
 	return (
 		<div className='w-full modal-container hidden gap-8' id='account-modal'>
@@ -147,6 +152,7 @@ function ManageAccount() {
 							placeholder='First Name'
 							className='w-72 m-1 px-2 py-3 rounded text-xs outline-none text-gray-400'
 							value={value.fname}
+							name='data'
 							onChange={(e) => setValue({ ...value, fname: e.target.value })}
 						/>
 					</div>
@@ -156,6 +162,7 @@ function ManageAccount() {
 							placeholder='Last Name'
 							className='w-72 m-1 px-2 py-3 rounded text-xs outline-none text-gray-400'
 							value={value.lname}
+							name='data'
 							onChange={(e) => setValue({ ...value, lname: e.target.value })}
 						/>
 					</div>
@@ -164,7 +171,8 @@ function ManageAccount() {
 							type='email'
 							placeholder='E-Mail'
 							className='w-72 m-1 px-2 py-3 rounded text-xs outline-none text-gray-400'
-							value={value.email}
+							value={value.email === null ? user.result.email : value.email}
+							name='data'
 							onChange={(e) => setValue({ ...value, email: e.target.value })}
 						/>
 					</div>
@@ -173,6 +181,7 @@ function ManageAccount() {
 							placeholder='Phone'
 							value={value.phone}
 							className='w-72 m-1 px-2 py-3 rounded text-xs outline-none text-gray-400'
+							name='data'
 							options={{
 								phone: true,
 								phoneRegionCode: 'RW',
@@ -186,6 +195,7 @@ function ManageAccount() {
 							placeholder='Address'
 							className='w-72 m-1 px-2 py-3 rounded text-xs outline-none text-gray-400'
 							value={value.address}
+							name='data'
 							onChange={(e) => setValue({ ...value, address: e.target.value })}
 						/>
 					</div>
@@ -199,9 +209,7 @@ function ManageAccount() {
 								value.lname === '' ||
 								value.email === '' ||
 								value.phone === '' ||
-								value.address === '' ||
-								value.sex === '' ||
-								value.dob === ''
+								value.address === ''
 							}>
 							Update
 						</button>
@@ -264,11 +272,13 @@ function ManageAccount() {
 						Change Password
 					</button>
 				</div>
-				<div className='flex'>
-					<span className='mx-auto text-xs text-gray-600 capitalize'>
+				<div className='flex mx-auto'>
+					<span className='mx-auto text-xs text-red-400 capitalize'>
 						{error.passError}
 					</span>
-					<span>{success}</span>
+					<span className='mx-auto text-xs text-gray-600 capitalize'>
+						{success}
+					</span>
 				</div>
 			</form>
 		</div>

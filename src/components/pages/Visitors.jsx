@@ -10,12 +10,7 @@ function Visitors() {
 		search: '',
 	});
 
-	// const [filter, setFilter] = useState([]);
-
-	// const [singleVisitor, setSingleVisitor] = useState();
-
 	const [allVisitors, setAllVisitors] = useState([]);
-	// const [error, setError] = useState([]);
 
 	const openVisitorModal = (visitor) => {
 		document.querySelector('#visitor-modal').classList.remove('hidden');
@@ -29,15 +24,22 @@ function Visitors() {
 		});
 	};
 
-	// const filterVisitors = () => {
-	// 	setFilter(
-	// 		allVisitors.filter((visitor) => {
-	// 			return (
-	// 				visitor.fname.toLowerCase().indexOf(value.search.toLowerCase()) !== -1
-	// 			);
-	// 		})
-	// 	);
-	// };
+	const filteredVisitors = allVisitors.filter(
+		(visitor) =>
+			(
+				visitor.fname +
+				' ' +
+				visitor.lname +
+				' ' +
+				visitor.email +
+				' ' +
+				visitor.phone +
+				' ' +
+				visitor.address
+			)
+				.toLowerCase()
+				.indexOf(value.search.toLowerCase()) !== -1
+	);
 
 	const removeVisitor = (visitor) => {
 		const option = window.confirm('are you sure want to delete?');
@@ -49,8 +51,6 @@ function Visitors() {
 		dayjs.extend(relativeTime);
 		loadVisitors();
 	});
-
-	// console.log('visitors: ', filter);
 
 	return (
 		<>
@@ -139,8 +139,8 @@ function Visitors() {
 							</tr>
 						</thead>
 						<tbody className='g-tab-body'>
-							{allVisitors &&
-								allVisitors.map((visitor) => {
+							{filteredVisitors &&
+								filteredVisitors.map((visitor) => {
 									return (
 										<tr className=' shadow' key={visitor._id}>
 											<td>

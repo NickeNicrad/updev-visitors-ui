@@ -51,7 +51,6 @@ function Visits() {
 
 	const stopTimer = (visit) => {
 		window.clearInterval(interval.current);
-
 		const timeHolder = {
 			startTime,
 			stopTime: Date.now(),
@@ -69,6 +68,27 @@ function Visits() {
 			setVisits(res.data);
 		});
 	};
+
+	const filteredVisits = visits.filter(
+		(visit) =>
+			(
+				visit.fname +
+				' ' +
+				visit.lname +
+				' ' +
+				visit.visitor +
+				' ' +
+				visit.visited +
+				' ' +
+				visit.relationship +
+				' ' +
+				visit.reason +
+				' ' +
+				visit.organization
+			)
+				.toLowerCase()
+				.indexOf(value.search.toLowerCase()) !== -1
+	);
 
 	useEffect(() => {
 		dayjs.extend(relativeTime);
@@ -179,8 +199,8 @@ function Visits() {
 						</tr>
 					</thead>
 					<tbody>
-						{visits &&
-							visits.map((visit) => {
+						{filteredVisits &&
+							filteredVisits.map((visit) => {
 								return (
 									<tr className='shadow p-2 g-tab-body my-2' key={visit._id}>
 										<td>

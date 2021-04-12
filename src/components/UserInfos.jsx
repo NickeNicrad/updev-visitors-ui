@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
+import avatar from '../images/avatar/profile_avatar.png';
 
 function UserInfos() {
 	const [user] = useState(JSON.parse(localStorage.getItem('profile')));
 
 	return (
 		<>
-			<div className='w-96 dm:w-full shadow-md rounded'>
+			<div className='w-96 dm:w-full shadow-md rounded hidden md:block'>
 				<div className='flex-none w-full h-44 relative'>
 					<img
-						src={user.result.pr_image}
+						src={avatar}
 						alt=''
-						className='w-full h-full object-cover rounded-t-md'
+						className='w-full h-full rounded-t-md object-cover'
 					/>
 					<div className='absolute bottom-2 left-2'>
-						<h1 className='text-gray-200 font-semibold shadow-inner capitalize'>
-							{`${user.result.fname} ${user.result.lname}`}
+						<h1 className='text-gray-300 font-semibold shadow-inner capitalize'>
+							{`${user.fname} ${user.lname}`}
 						</h1>
-						<p className='text-gray-50 text-xs shadow-inner'>
-							{user.result.email}
-						</p>
+						<p className='text-gray-200 text-xs shadow-inner'>{user.email}</p>
 					</div>
 					<div className='absolute bg-gray-50 rounded-full top-2 right-2 font-thin text-gray-400 text-xs p-1 hover:bg-gray-100 hover:text-gray-500 cursor-pointer'>
 						<input
@@ -56,15 +55,15 @@ function UserInfos() {
 					<h1>Personal Information</h1>
 				</div>
 
-				<div className='px-2 text-gray-600'>
-					<div className='flex gap-1 items-center'>
-						<span className='text-sm'>Role: </span>
-						<span>No</span>
+				<div className='px-2 text-gray-600 text-sm'>
+					<div className='flex gap-1 items-center mt-1'>
+						<span>Address: </span>
+						<span className='font-semibold'>{user.address}</span>
 					</div>
 
-					<div className='flex gap-1 items-center'>
-						<span className='text-sm'>Role: </span>
-						<span>No</span>
+					<div className='flex gap-1 items-center mt-2'>
+						<span>Phone: </span>
+						<span className='font-semibold'>{user.phone}</span>
 					</div>
 				</div>
 			</div>

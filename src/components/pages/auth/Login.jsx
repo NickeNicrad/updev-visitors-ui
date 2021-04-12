@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import * as api from '../../../api/index';
 
 function Login() {
@@ -25,7 +24,7 @@ function Login() {
 				window.location = '/';
 			})
 			.catch((err) => {
-				alert(err.res.data.msg);
+				console.log(err.res.data.msg);
 			});
 	};
 
@@ -41,7 +40,7 @@ function Login() {
 				<div className='my-10 font-semibold text-3xl text-gray-700'>
 					<h1 className='text-gray-500'>Login</h1>
 				</div>
-				<form className='' onSubmit={handlSubmit}>
+				<form onSubmit={handlSubmit}>
 					<div>
 						<input
 							className='w-80 border-transparent px-2 py-4 text-xs rounded outline-none text-gray-500 my-2 shadow-xs'
@@ -69,14 +68,6 @@ function Login() {
 						</button>
 					</div>
 				</form>
-				<div>
-					<span className='text-sm text-gray-700'>Don't Have an Account? </span>
-					<Link
-						className='text-sm text-gray-500 hover:text-gray-400'
-						to='signup'>
-						SignUp
-					</Link>
-				</div>
 			</div>
 		</div>
 	);
