@@ -55,14 +55,14 @@ function Visitors() {
 	return (
 		<>
 			<div className='w-full'>
-				<div className='text-sm font-thin text-gray-500 gap-2 flex justify-start'>
+				<div className='text-xs sm:text-sm font-thin text-gray-500 gap-2 flex justify-start'>
 					<Link
-						className='bg-gray-50 rounded py-2 px-4 hover:bg-gray-100 focus:outline-none'
+						className='bg-gray-50 rounded py-2 px-2 sm:px-4 hover:bg-gray-100 focus:outline-none'
 						to='/'>
 						All Visitors
 					</Link>
 					<Link
-						className='bg-gray-50 rounded py-2 px-4 hover:bg-gray-100 focus:outline-none'
+						className='bg-gray-50 rounded py-2 px-2 sm:px-4 hover:bg-gray-100 focus:outline-none'
 						to='/visits'>
 						All Visits
 					</Link>
@@ -70,7 +70,7 @@ function Visitors() {
 				<div className='w-full h-16 flex justify-center items-center'>
 					<div className='relative'>
 						<input
-							className='px-10 py-3 w-96 outline-none text-sm shadow rounded bg-gray-50 text-gray-400'
+							className='px-10 py-3 w-96 xs:w-full mx-auto outline-none text-sm shadow rounded bg-gray-50 text-gray-400'
 							placeholder='search'
 							type='text'
 							value={value.search}
@@ -116,7 +116,7 @@ function Visitors() {
 					</div>
 				</div>
 				<div className='g-tab shadow-normal overflow-hidden overflow-y-scroll text-gray-700'>
-					<table className='w-full text-center text-sm'>
+					<table className='w-full text-center sm:text-sm text-xs min-w-sm'>
 						<thead>
 							<tr>
 								<th>
@@ -142,10 +142,10 @@ function Visitors() {
 							{filteredVisitors &&
 								filteredVisitors.map((visitor) => {
 									return (
-										<tr className=' shadow' key={visitor._id}>
+										<tr className='shadow' key={visitor._id}>
 											<td>
 												<img
-													className='w-12 h-12 rounded-full object-cover mx-auto my-4'
+													className='w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover mx-auto my-4'
 													src={profile1}
 													alt=''
 												/>
@@ -164,13 +164,13 @@ function Visitors() {
 											<td>
 												<button
 													onClick={openVisitorModal.bind(this, visitor)}
-													className='px-4 py-2 rounded bg-gray-900 text-gray-400 focus:outline-none hover:bg-gray-800 hover:text-gray-300'>
+													className='px-2 py-2 text-xs md:text-sm md:px-4 rounded bg-gray-900 text-gray-400 focus:outline-none hover:bg-gray-800 hover:text-gray-300'>
 													edit
 												</button>
 											</td>
 											<td>
 												<button
-													className='px-4 py-2 rounded bg-red-700 text-gray-50 focus:outline-none hover:bg-red-600 hover:text-gray-600'
+													className='px-2 py-2 text-xs md:text-sm md:px-4 rounded bg-red-700 text-gray-50 focus:outline-none hover:bg-red-600 hover:text-gray-600'
 													onClick={removeVisitor.bind(this, visitor)}>
 													delete
 												</button>

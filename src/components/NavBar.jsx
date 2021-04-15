@@ -28,8 +28,8 @@ function NavBar() {
 	return (
 		<>
 			{user ? (
-				<div className='h-12 bg-gray-900 font-thin'>
-					<div className='mx-auto flex justify-between items-center h-12 w-4/5'>
+				<div className='w-full h-12 bg-gray-900 font-thin sm:full'>
+					<div className='mx-auto flex justify-between items-center h-12 w-11/12 sm:w-4/5'>
 						<ul className='flex gap-2 text-gray-400'>
 							<li>
 								<img className='w-6 h-6 rounded-full' src={logo} alt='' />

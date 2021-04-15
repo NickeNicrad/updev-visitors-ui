@@ -6,7 +6,7 @@ function UserInfos() {
 
 	return (
 		<>
-			<div className='w-96 dm:w-full shadow-md rounded hidden md:block'>
+			<div className='w-96 dm:w-full shadow-md rounded hidden lg:block'>
 				<div className='flex-none w-full h-44 relative'>
 					<img
 						src={avatar}
