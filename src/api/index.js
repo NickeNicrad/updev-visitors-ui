@@ -32,7 +32,7 @@ export const getAllVisitors = () => API.get('/visitors');
 export const getVisitor = (id) => API.get(`/visitors/${id}`);
 
 // creating a new visitor
-export const createVisitor = (newVisitor) => API.post('/visitors', newVisitor);
+export const createVisitor = (newVisitor) => console.log(newVisitor)
 
 // update an existing visitor in the database
 export const updateVisitor = (id, upVisitor) => API.patch(`/visitors/${id}`, upVisitor);

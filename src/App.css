@@ -8,6 +8,10 @@
 	box-sizing: border-box;
 }
 
+body {
+	background-color: #fafafa;
+}
+
 .edit-form {
 	width: 100%;
 	border-radius: 0.3rem;

@@ -24,7 +24,10 @@ function Login() {
 				window.location = '/';
 			})
 			.catch((err) => {
-				console.log(err.res.data.msg);
+				if (err.response) {
+					console.log(err.response.data.msg);
+					alert(err.response.data.msg);
+				}
 			});
 	};
 

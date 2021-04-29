@@ -53,136 +53,65 @@ function Visitors() {
 	});
 
 	return (
-		<>
-			<div className='w-full'>
-				<div className='text-xs sm:text-sm font-thin text-gray-500 gap-2 flex justify-start'>
-					<Link
-						className='bg-gray-50 rounded py-2 px-2 sm:px-4 hover:bg-gray-100 focus:outline-none'
-						to='/'>
-						All Visitors
-					</Link>
-					<Link
-						className='bg-gray-50 rounded py-2 px-2 sm:px-4 hover:bg-gray-100 focus:outline-none'
-						to='/visits'>
-						All Visits
-					</Link>
-				</div>
-				<div className='w-full h-16 flex justify-center items-center'>
-					<div className='relative'>
-						<input
-							className='px-10 py-3 w-96 xs:w-full mx-auto outline-none text-sm shadow rounded bg-gray-50 text-gray-400'
-							placeholder='search'
-							type='text'
-							value={value.search}
-							onChange={(e) => {
-								setValue({ ...value, search: e.target.value });
-							}}
-						/>
-						<svg
-							xmlns='http://www.w3.org/2000/svg'
-							viewBox='0 0 20 20'
-							className='h-5 w-5 absolute top-3 left-3 cursor-pointer text-gray-400 z-20 fill-current font-thin'
-							stroke='currentColor'
-							strokeWidth='0'
-							fill='none'>
-							<path
-								d='M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z'
-								clipRule='evenodd'
-							/>
-						</svg>
+		<div>
+			<div className='relative'>
+				<input
+					className='w-96 py-3 pl-5 pr-9 rounded-lg shadow outline-none font-thin text-gray-500'
+					type='text'
+					name=''
+					id=''
+					placeholder='recherche'
+				/>
+				<svg
+					xmlns='http://www.w3.org/2000/svg'
+					className='h-5 w-5 absolute right-3 top-4 text-gray-400'
+					viewBox='0 0 20 20'
+					fill='currentColor'>
+					<path
+						fillRule='evenodd'
+						d='M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z'
+						clipRule='evenodd'
+					/>
+				</svg>
+			</div>
+			<div>
+				<div className='shadow mt-6 flex items-center p-2 rounded-lg gap-2 cursor-pointer hover:bg-gray-100 active:bg-gray-200'>
+					<img className='w-16 rounded-full' src={profile1} alt='' />
+					<div className='leading-5'>
+						<span className='text-gray-700'>Nicke Nicrad</span>
+						<br />
+						<span className='text-xs text-gray-400 px-1 py-0 rounded-md bg-blue-200'>
+							CEO
+						</span>
 					</div>
-				</div>
-				<div className='w-full h-14 flex items-center justify-between text-gray-700'>
-					<h1 className='font-semibold text-normal'>All Visitors</h1>
-					<div>
-						<button
-							onClick={openVisitorModal}
-							className=' relative text-sm px-6 py-2 bg-gray-50 rounded hover:bg-gray-100 focus:outline-none'>
-							<svg
-								xmlns='http://www.w3.org/2000/svg'
-								fill='none'
-								viewBox='0 0 24 24'
-								stroke='currentColor'
-								className='absolute top-2 left-1 w-5 h-5'>
-								<path
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									strokeWidth='2'
-									d='M12 6v6m0 0v6m0-6h6m-6 0H6'
-								/>
-							</svg>
-							<span>add new visitor</span>
-						</button>
+					<div className='h-20'></div>
+					<div className='block text-xs text-gray-600 tracking-wide leading-5'>
+						<span>nickenicrad@gmail.com</span>
+						<br />
+						<span>0789184496</span>
 					</div>
+
+					{/* <div className='text-xl font-bold text-gray-500'>...</div> */}
 				</div>
-				<div className='g-tab shadow-normal overflow-hidden overflow-y-scroll text-gray-700'>
-					<table className='w-full text-center sm:text-sm text-xs min-w-sm'>
-						<thead>
-							<tr>
-								<th>
-									<svg
-										xmlns='http://www.w3.org/2000/svg'
-										viewBox='0 0 20 20'
-										className='h-4 w-5 cursor-pointer text-gray-700 fill-current font-thin mx-auto my-4'
-										stroke='currentColor'
-										strokeWidth='0'
-										fill='none'>
-										<path d='M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z' />
-									</svg>
-								</th>
-								<th>Full Name</th>
-								<th>E-Mail</th>
-								<th>Phone</th>
-								<th>Address</th>
-								<th>Edit</th>
-								<th>Delete</th>
-							</tr>
-						</thead>
-						<tbody className='g-tab-body'>
-							{filteredVisitors &&
-								filteredVisitors.map((visitor) => {
-									return (
-										<tr className='shadow' key={visitor._id}>
-											<td>
-												<img
-													className='w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover mx-auto my-4'
-													src={profile1}
-													alt=''
-												/>
-											</td>
-											<td className='space-y-0'>
-												<strong className='block font-semibold capitalize'>
-													{`${visitor.fname} ${visitor.lname}`}
-												</strong>
-												<span className='block font-thin text-xs'>
-													{dayjs(visitor.createdAt).fromNow()}
-												</span>
-											</td>
-											<td>{visitor.email}</td>
-											<td>{visitor.phone}</td>
-											<td className='capitalize'>{visitor.address}</td>
-											<td>
-												<button
-													onClick={openVisitorModal.bind(this, visitor)}
-													className='px-2 py-2 text-xs md:text-sm md:px-4 rounded bg-gray-900 text-gray-400 focus:outline-none hover:bg-gray-800 hover:text-gray-300'>
-													edit
-												</button>
-											</td>
-											<td>
-												<button
-													className='px-2 py-2 text-xs md:text-sm md:px-4 rounded bg-red-700 text-gray-50 focus:outline-none hover:bg-red-600 hover:text-gray-600'
-													onClick={removeVisitor.bind(this, visitor)}>
-													delete
-												</button>
-											</td>
-										</tr>
-									);
-								})}
-						</tbody>
-					</table>
+
+				<div className='shadow mt-6 flex items-center p-2 rounded-lg gap-2 cursor-pointer'>
+					<img className='w-16 rounded-full' src={profile1} alt='' />
+					<div className='leading-5'>
+						<span className='text-gray-700'>Nicke Nicrad</span>
+						<br />
+						<span className='text-xs text-gray-400 px-1 py-0 rounded-md bg-blue-200'>
+							CEO
+						</span>
+					</div>
+					<div className='h-20'></div>
+					<div className='block text-xs text-gray-600 tracking-wide leading-5'>
+						<span>nickenicrad@gmail.com</span>
+						<br />
+						<span>0789184496</span>
+					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }
 

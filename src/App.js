@@ -6,6 +6,7 @@ import Home from './components/Home'
 import Navbar from './components/NavBar'
 import Footer from "./components/Footer"
 import Login from './components/pages/auth/Login'
+// import Home from './test/components/Home'
 
 function App()
 {
@@ -13,7 +14,8 @@ function App()
     <Router>
       <Navbar />
       <Switch>
-        <PrivateRoute exact path="/" component={Home} />
+        {/* <PrivateRoute exact path="/" component={Home} /> */}
+        <Route path="/" component={Home} />
         <Route path="/login" component={Login} />
       </Switch>
       <Footer />

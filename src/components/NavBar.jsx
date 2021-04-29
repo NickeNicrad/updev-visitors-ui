@@ -44,7 +44,7 @@ function NavBar() {
 								className='relative flex hover:text-gray-500'
 								onClick={openDropdown}>
 								<span className='mr-1 capitalize'>
-									{`${user.fname} ${user.lname}`}
+									{`${user.result.fname} ${user.result.lname}`}
 								</span>
 								<img
 									src={profile1}
@@ -75,7 +75,6 @@ function NavBar() {
 								/>
 								<label htmlFor='edit-nav-img'>
 									<svg
-										onClick=''
 										xmlns='http://www.w3.org/2000/svg'
 										fill='none'
 										viewBox='0 0 24 24'
@@ -98,11 +97,11 @@ function NavBar() {
 							</div>
 							<div>
 								<span className='text-normal font-semibold text-gray-300 capitalize'>
-									{`${user.fname} ${user.lname}`}
+									{`${user.result.fname} ${user.result.lname}`}
 								</span>
 							</div>
 							<div>
-								<span className='text-sm'>{user.email}</span>
+								<span className='text-sm'>{user.result.email}</span>
 							</div>
 							<div>
 								<button

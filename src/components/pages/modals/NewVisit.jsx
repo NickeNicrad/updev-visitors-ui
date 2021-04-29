@@ -52,6 +52,13 @@ function NewVisit() {
 
 	const closeModal = () => {
 		document.querySelector('#visit-modal').classList.add('hidden');
+		setValue({
+			visitor: '',
+			visited: '',
+			organization: '',
+			relationship: '',
+			reason: '',
+		});
 	};
 
 	const loadAllVisitors = () => {
